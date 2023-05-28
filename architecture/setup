@@ -1,0 +1,11 @@
+
+# Running
+# . ./setup
+
+
+alias up="figlet 'owl - up' | lolcat; docker-compose -f docker-compose.global.admin.yml -f docker-compose.global.network.yml -f docker-compose.global.volume.yml  -f docker-compose.ms.1.yml -f docker-compose.ms.2.yml up -d; echo" 
+
+alias down="figlet 'owl - down' | lolcat; docker-compose -f docker-compose.global.admin.yml -f docker-compose.global.network.yml -f docker-compose.global.volume.yml  -f docker-compose.ms.1.yml -f docker-compose.ms.2.yml down; echo"
+
+alias ps="figlet 'owl - ps' | lolcat; docker-compose -f docker-compose.global.admin.yml -f docker-compose.global.network.yml -f docker-compose.global.volume.yml  -f docker-compose.ms.1.yml -f docker-compose.ms.2.yml ps; echo"
+

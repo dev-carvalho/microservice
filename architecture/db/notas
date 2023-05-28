@@ -1,0 +1,88 @@
+##---------------------##
+##  Imagem PostGreSQL  ##
+##---------------------##
+
+NOVO.: postgres:15.2-alpine3.17 (243MB)
+       postgres (PostgreSQL) 15.2
+
+docker run -it db-1 /bin/sh
+
+Repositório: https://github.com/docker-library/postgres
+Mantido por: PostgreSQL Docker Community
+
+Construindo...
+
+PostGreSQL Versão 15 - Usa Linux Alpine 3.17 (only 5 MB in size)
+
+https://github.com/docker-library/postgres/tree/master/15/alpine
+- Dockerfile
+- docker-entrypoint.sh
+
+docker build --no-cache -t al-pg .
+[+] Building 643.2s (13/13) FINISHED
+[+] Building 887.8s (13/13) FINISHED
+
+# docker build --no-cache -t postgres .
+[+] Building 1232.5s (13/13) FINISHED
+
+
+##-----------------##
+##  Imagem Python  ##
+##-----------------##
+
+NOVO.: python:3.12.0a7-alpine3.17 (152MB)
+       postgres Python 3.11.1
+
+docker run -it py-docker-ms-1 /bin/sh
+
+Construindo...
+
+Repositório: https://github.com/docker-library/python
+Mantido por: PostgreSQL Docker Community
+
+https://github.com/docker-library/python/tree/master/3.10/alpine3.17
+- Dockerfile
+
+
+
+##--------------##
+##  Docker HUB  ##
+##--------------##
+1. Crie uma conta. Entre no site e crie uma conta. ...
+2. Crie um repositório. Assim que fizer o login, você será direcionado para a página que lista seus repositórios criados. ...
+3. Criar imagem. ...
+4. Buildar imagem. ...
+5. Fazer o login no Docker Hub. ...
+6. Bater uma tag na imagem. ...
+7. Faça o push.
+
+Docker commands
+---------------
+
+4. Buildar imagem 
+ `docker build -t “docker_id:nome_do_repositorio” -f PATH/Dockerfile 
+
+5. Fazer o login no Docker Hub
+docker login
+
+6. Bater uma tag na imagem. ...
+ Image ID
+ docker tag image_id  docker_id/nome_do_repositorio:TAG
+ docker tag a3138154c48f koruja/owl:python
+ docker tag 35540b15aee9 koruja/owl:postgres
+
+7. Enviar uma nova tag para este repositório,
+docker push koruja/owl:tagname
+docker push koruja/owl:python
+docker push koruja/owl:postgres
+
+
+
+
+
+
+Teste
+docker run -d --name py -p 8080:80 python
+docker run -d --name pg -p 5432:5432 postgres
+
+docker run -it postgresdg  /bin/sh

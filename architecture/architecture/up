@@ -1,0 +1,4 @@
+#!/usr/bin/zsh
+
+docker-compose -f docker-compose.global.admin.yml -f docker-compose.global.network.yml -f docker-compose.global.volume.yml  -f docker-compose.ms.1.yml -f docker-compose.ms.2.yml up -d 
+

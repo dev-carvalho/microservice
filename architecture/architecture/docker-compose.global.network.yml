@@ -1,0 +1,101 @@
+# docker-compose.yml
+
+version: '3.8'
+
+##-----------##      
+##  NETWORK  ##
+##-----------##
+
+# Administração das redes utilizados no sistema de microsserviços
+
+services:
+
+  # Administração do Banco de Dados PostGres
+  Admim-PostGreSQL:
+    networks:
+      net7-admin:
+        ipv4_address: 192.168.7.1   # Interface de acesso do Administrador de Dados
+      net5-database:
+        ipv4_address: 192.168.5.250 # interface de acesso aos Banco de Dados       
+  
+  #--------#
+  #  MS-1  #
+  #--------#
+
+  ms-1:
+    networks:
+      net1-microservice:
+        ipv4_address: 192.168.1.1
+  db-1:
+    networks:
+      net5-database:
+        ipv4_address: 192.168.5.1      
+
+  #--------#
+  #  MS-2  #
+  #--------#
+
+  ms-2:
+    networks:
+      net1-microservice:
+        ipv4_address: 192.168.1.2
+  db-2:
+    networks:
+      net5-database:
+        ipv4_address: 192.168.5.2
+
+
+
+##------------##     
+##  Networks  ##
+##------------##
+
+networks:
+
+  # Descrição das Redes
+  #  1 a 4 - Microsserviços
+  #  5 e 6 - Databases
+  #  7 - Admin (Governace)
+  #  8 - Monitoring
+
+  # Rede do Microserviço (net10) que interliga a Aplicação (app)
+  # e seu Banco de Dados (db).
+  # Python - Aplicação
+  # PostGreSQL - Banco de Dados
+  net1-microservice:
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.1.0/24"
+          gateway: 192.168.1.254
+
+  # Rede de acesso dos Banco de dDados dos Microsserviços          
+  net5-database:
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.5.0/24"
+          gateway: 192.168.5.254 
+
+  # Rede de Monitoramento
+  # Prometeus - Time Serie Database
+  # Grafana - Dashboard de monitoramento
+  net8-monitoring:
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.8.0/24"
+          gateway: 192.168.8.254  
+
+  # Rede de Administração
+  # PGadmin - Administração do PostGreSQL
+  # KongA - Administração da API Gateway KONG
+  net7-admin:
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.7.0/24"
+          gateway: 192.168.7.254 
+
+           
+
